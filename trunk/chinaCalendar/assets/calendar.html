@@ -10,32 +10,10 @@ name=description>
 <META http-equiv=Content-Type content="text/html; charset=gb2312">
 <style type="text/css" >
 body {
-	background-color: #e4defe;
-	
-	/* botton */
-.botton_bg{
-	float: left;
-	padding: 0 8px;
-	height: 20px;
-	background-image: url(btn_bg.gif);
-	text-align: center;
-	border: solid 1px #EF6F03;
-	line-height: 22px;
-	margin-right: 8px;
-}
-.botton_bg_over{
-	float: left;
-	padding: 0 8px;
-	height: 20px;
-	background-image: url(btn_bg_over.gif);
-	text-align: center;
-	border: solid 1px #EF6F03;
-	line-height: 22px;
-	margin-right: 8px;
-}
+	background-color: #ffffff;
+	width:320px;
 }
 </style>
-
 <SCRIPT language=JavaScript>
 <!--
 /*****************************************************************************
@@ -388,10 +366,12 @@ function drawCld(SY,SM) {
    var i,sD,s,size;
    cld = new calendar(SY,SM);
 
+	
    if(SY>1874 && SY<1909) yDisplay = '光绪' + (((SY-1874)==1)?'元':SY-1874)
    if(SY>1908 && SY<1912) yDisplay = '宣统' + (((SY-1908)==1)?'元':SY-1908)
    if(SY>1911 && SY<1950) yDisplay = '民国' + (((SY-1911)==1)?'元':SY-1911)
    if(SY>1949) yDisplay = '共和国' + (((SY-1949)==1)?'元':SY-1949)
+   
 
   // GZ.innerHTML = '◆ '+yDisplay +'年 ◆农历 ' + cyclical(SY-1900+36) + '年 &nbsp;【'+Animals[(SY-4)%12]+'】';
 
@@ -421,14 +401,14 @@ function drawCld(SY,SM) {
 
          s=cld[sD].lunarFestival;
          if(s.length>0) { //农历节日
-            if(s.length>6) s = s.substr(0, 4)+'…';
+            if(s.length>2) s = s.substr(0, 2)+'…';
             s = s.fontcolor('red');
          }
          else { //国历节日
             s=cld[sD].solarFestival;
             if(s.length>0) {
                size = (s.charCodeAt(0)>0 && s.charCodeAt(0)<128)?8:4;
-               if(s.length>size+2) s = s.substr(0, size)+'…';
+               if(s.length>2) s = s.substr(0, 2)+'…';
                s = s.fontcolor('blue');
             }
             else { //廿四节气
@@ -444,6 +424,8 @@ function drawCld(SY,SM) {
          lObj.innerHTML = '';
       }
    }
+
+
 }
 
 
@@ -452,9 +434,6 @@ function changeCld() {
    y=CLD.SY.selectedIndex+1900;
    m=CLD.SM.selectedIndex;
 
-   //调用java
-   window.demo.setVal(y,m);
-   
    drawCld(y,m);
 }
 
@@ -609,27 +588,18 @@ function getCookie(Name) {
 /////////////////////////////////////////////////////////
 
 function initial() {
-   resizeTo(780,540) 
+   //resizeTo(780,540) 
    dStyle = detail.style;
    CLD.SY.selectedIndex=tY-1900;
    CLD.SM.selectedIndex=tM;
 
-	//调用java获取变量
-   var py = window.demo.getYear();
-   var pm = window.demo.getMonth();
-   if(py!=-1){
-	   tY = py;
-	}
-	if(pm!=-1){
-		tM = pm;
-	}
-   alert('param from java:'+py+','+pm);
-   
+	
    drawCld(tY,tM);
-   pushBtm('');
+   //pushBtm('');
    //CLD.TZ.selectedIndex=getCookie("TZ");
    //changeTZ();
    //tick();
+
 }
 //-->
 </SCRIPT>
@@ -663,17 +633,7 @@ End Function
 <BODY leftMargin=0 topMargin=0 onload=initial()>
 
 
-<SCRIPT language=JavaScript>
 
-lck=0;
-function r(hval)
-{
-if ( lck == 0 )
-{
-document.bgColor=hval;
-}
-}
-</SCRIPT>
 
 <DIV id=detail style="POSITION: absolute"></DIV>
 <CENTER>
@@ -683,30 +643,43 @@ document.bgColor=hval;
   <TR>   
     <TD align=middle>
       <DIV style="Z-INDEX: -1; POSITION: absolute; TOP: 30px"><FONT id=YMBG 
-      style="FONT-SIZE: 90pt; COLOR: #f0f0f0; FONT-FAMILY: 'Arial Black'">&nbsp;0000<BR>&nbsp;JUN</FONT> 
+      style="FONT-SIZE: 80pt; COLOR: #f0f0f0; FONT-FAMILY: 'Arial Black'">&nbsp;0000<BR>&nbsp;JUN</FONT> 
       </DIV>
       <TABLE border=0>
         <TBODY>
-        <TR>
-          <TD bgColor=#000080 colSpan=7><FONT style="FONT-SIZE: 9pt" 
-            color=#ffffff size=2>公历<SELECT style="FONT-SIZE: 9pt" 
-            onchange=changeCld() name=SY> 
-              <SCRIPT language=JavaScript><!--
-            for(i=1900;i<2050;i++) document.write('<option>'+i)
-            //--></SCRIPT>
-            </SELECT>年<SELECT style="FONT-SIZE: 9pt" onchange=changeCld() 
-            name=SM> 
-              <SCRIPT language=JavaScript><!--
-            for(i=1;i<13;i++) document.write('<option>'+i)
-            //--></SCRIPT>
-            </SELECT>月 </FONT><FONT id=GZ face=标楷体 color=yellow 
-            size=3></FONT><BR></TD></TR>
-          <TD width=46><FONT color=red>日</FONT></TD>
-          <TD width=46>一</TD>
-          <TD width=46>二</TD>
-          <TD width=46>三</TD>
-          <TD width=46>四</TD>
-          <TD width=46>五</TD>
+         <TR>
+          <TD bgColor=#000080 colSpan=7>
+			  <FONT style="FONT-SIZE: 10pt" 
+				color=#ffffff size=2>公历<SELECT style="FONT-SIZE: 9pt" 
+				onchange=changeCld() name=SY> 
+				  <SCRIPT language=JavaScript><!--
+				for(i=1900;i<2050;i++) document.write('<option>'+i)
+				//--></SCRIPT>
+				</SELECT>年<SELECT style="FONT-SIZE: 10pt" onchange=changeCld() 
+				name=SM> 
+				  <SCRIPT language=JavaScript><!--
+				for(i=1;i<13;i++) document.write('<option>'+i)
+				//--></SCRIPT>
+				</SELECT>月 </FONT>
+				<FONT id=GZ face=标楷体 color=yellow size=3></FONT><BR>
+			</TD>
+		</TR>
+		<TR>
+			<TD bgColor=#000080 style="FONT-SIZE:11pt; color:yellow" vAlign=middle align=left colSpan=7>
+			  <label onclick="pushBtm('YU')"><u>上年↑</u></label>&nbsp;
+			  <label onclick="pushBtm('YD')"><u>下年↓</u></label>&nbsp;
+			  <label onclick="pushBtm('MU')"><u>上月↑</u></label>&nbsp;	
+			  <label onclick="pushBtm('MD')"><u>下月↓</u></label>&nbsp;
+			  <label onclick="pushBtm('')"><u>返回今天</u></label>	
+			</TD>	
+		</TR>
+        <TR align=middle bgColor=#e0e0e0>
+          <TD width=45><FONT color=red>日</FONT></TD>
+          <TD width=45>一</TD>
+          <TD width=45>二</TD>
+          <TD width=45>三</TD>
+          <TD width=45>四</TD>
+          <TD width=45>五</TD>
           <TD width=46><FONT color=green>六</FONT></TD></TR>
         <SCRIPT language=JavaScript><!--
             var gNum
@@ -724,13 +697,6 @@ document.bgColor=hval;
                document.write('</tr>')
             }
             //--></SCRIPT>
-    
-   </TBODY></TABLE></TD></TR><TR>
-    <TD vAlign=top align=center width=40>
-	<BUTTON onclick="pushBtm('YU')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">年↑</BUTTON>
-	<BUTTON onclick="pushBtm('YD')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">年↓</BUTTON> 
-	<BUTTON onclick="pushBtm('MU')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">月↑</BUTTON>
-	<BUTTON onclick="pushBtm('MD')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">月↓</BUTTON> 
-    <BUTTON onclick="pushBtm('')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">返回今日</BUTTON> 
-  </TD></TR></TBODY></TABLE></FORM>
+
+        </TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
 </BODY></HTML>
