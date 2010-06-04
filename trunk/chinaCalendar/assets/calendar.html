@@ -8,6 +8,33 @@ name=keywords>
 <META content="gregorian solar calendar and chinese lunar calendar" 
 name=description>
 <META http-equiv=Content-Type content="text/html; charset=gb2312">
+<style type="text/css" >
+body {
+	background-color: #e4defe;
+	
+	/* botton */
+.botton_bg{
+	float: left;
+	padding: 0 8px;
+	height: 20px;
+	background-image: url(btn_bg.gif);
+	text-align: center;
+	border: solid 1px #EF6F03;
+	line-height: 22px;
+	margin-right: 8px;
+}
+.botton_bg_over{
+	float: left;
+	padding: 0 8px;
+	height: 20px;
+	background-image: url(btn_bg_over.gif);
+	text-align: center;
+	border: solid 1px #EF6F03;
+	line-height: 22px;
+	margin-right: 8px;
+}
+}
+</style>
 
 <SCRIPT language=JavaScript>
 <!--
@@ -366,7 +393,7 @@ function drawCld(SY,SM) {
    if(SY>1911 && SY<1950) yDisplay = '民国' + (((SY-1911)==1)?'元':SY-1911)
    if(SY>1949) yDisplay = '共和国' + (((SY-1949)==1)?'元':SY-1949)
 
-   GZ.innerHTML = '◆ '+yDisplay +'年 ◆农历 ' + cyclical(SY-1900+36) + '年 &nbsp;【'+Animals[(SY-4)%12]+'】';
+  // GZ.innerHTML = '◆ '+yDisplay +'年 ◆农历 ' + cyclical(SY-1900+36) + '年 &nbsp;【'+Animals[(SY-4)%12]+'】';
 
    YMBG.innerHTML = "&nbsp;" + SY + "<BR>&nbsp;" + monthName[SM];
 
@@ -674,14 +701,13 @@ document.bgColor=hval;
             //--></SCRIPT>
             </SELECT>月 </FONT><FONT id=GZ face=标楷体 color=yellow 
             size=3></FONT><BR></TD></TR>
-        <TR align=middle bgColor=#e0e0e0>
-          <TD width=54><FONT color=red>日</FONT></TD>
-          <TD width=54>一</TD>
-          <TD width=54>二</TD>
-          <TD width=54>三</TD>
-          <TD width=54>四</TD>
-          <TD width=54>五</TD>
-          <TD width=54><FONT color=green>六</FONT></TD></TR>
+          <TD width=46><FONT color=red>日</FONT></TD>
+          <TD width=46>一</TD>
+          <TD width=46>二</TD>
+          <TD width=46>三</TD>
+          <TD width=46>四</TD>
+          <TD width=46>五</TD>
+          <TD width=46><FONT color=green>六</FONT></TD></TR>
         <SCRIPT language=JavaScript><!--
             var gNum
             for(i=0;i<6;i++) {
@@ -699,12 +725,12 @@ document.bgColor=hval;
             }
             //--></SCRIPT>
     
-    </TBODY></TABLE></TD></TR><TR>
-    <TD vAlign=top align=middle width=40>
-	<BUTTON style="FONT-SIZE: 9pt" onclick="pushBtm('YU')">年↑</BUTTON>
-	<BUTTON style="FONT-SIZE: 9pt" onclick="pushBtm('YD')">年↓</BUTTON> 
-	<BUTTON style="FONT-SIZE: 9pt" onclick="pushBtm('MU')">月↑</BUTTON>
-	<BUTTON style="FONT-SIZE: 9pt" onclick="pushBtm('MD')">月↓</BUTTON> 
-    <BUTTON style="FONT-SIZE: 9pt" onclick="pushBtm('')">今日</BUTTON> 
+   </TBODY></TABLE></TD></TR><TR>
+    <TD vAlign=top align=center width=40>
+	<BUTTON onclick="pushBtm('YU')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">年↑</BUTTON>
+	<BUTTON onclick="pushBtm('YD')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">年↓</BUTTON> 
+	<BUTTON onclick="pushBtm('MU')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">月↑</BUTTON>
+	<BUTTON onclick="pushBtm('MD')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">月↓</BUTTON> 
+    <BUTTON onclick="pushBtm('')" class="botton_bg" onmouseover="this.className='botton_bg_over'" onmouseout="this.className='botton_bg'">返回今日</BUTTON> 
   </TD></TR></TBODY></TABLE></FORM>
 </BODY></HTML>
