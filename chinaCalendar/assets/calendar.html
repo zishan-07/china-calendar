@@ -10,10 +10,10 @@ name=description>
 <META http-equiv=Content-Type content="text/html; charset=gb2312">
 <style type="text/css" >
 body {
-	background-color: #ffffff;
-	width:320px;
+	background-color: #ffffff;	
 }
 </style>
+
 <SCRIPT language=JavaScript>
 <!--
 /*****************************************************************************
@@ -51,67 +51,67 @@ var monthName = new Array("JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP",
 var sFtv = new Array(
 "0101*元旦节",
 "0214 情人节",
-"0305 学雷锋纪念日",
+"0305 雷锋纪念日",
 "0308 妇女节",
 "0312 植树节",
 "0315 消费者权益日",
 "0401 愚人节",
-"0407 世界卫生日",
-"0422 世界地球日",
-"0501*劳动节",
-"0502*劳动节",
-"0503*劳动节",
+"0407 卫生日",
+"0422 地球日",
+"0501 劳动节",
+"0502 ",
+"0503 ",
 "0504 青年节",
-"0508 世界红十字日",
-"0512 国际护士节",
-"0515 国际家庭日",
-"0517 国际电信日",
-"0601 国际儿童节",
-"0605 世界环境保护日",
-"0606 全国爱眼日",
-"0625 全国土地日",
-"0626 国际禁毒日",
-"0701 香港回归纪念日 中共诞辰",
-"0707 抗日战争纪念日",
+"0508 ",
+"0512 护士节",
+"0515 ",
+"0517 电信日",
+"0601 儿童节",
+"0605 ",
+"0606 爱眼日",
+"0625 土地日",
+"0626 禁毒日",
+"0701 ",
+"0707 ",
 "0801 建军节",
-"0815 抗日战争胜利纪念",
-"0909 毛泽东逝世纪念",
-"0908 国际扫盲日",
-"0910 中国教师节", 
-"0927 世界旅游日",
-"0928 孔子诞辰",
+"0815 ",
+"0909 ",
+"0908 ",
+"0910 教师节", 
+"0927 旅游日",
+"0928 ",
 "1001*国庆节",
-"1002*国庆节",
-"1003*国庆节",
+"1002 ",
+"1003 ",
 "1006 老人节",
-"1009 世界邮政日",
-"1014 世界标准日",
-"1016 世界粮食日",
-"1024 联合国日",
-"1120*彝族年",
-"1121*彝族年",
-"1122*彝族年",
-"1112 孙中山诞辰纪念",
-"1205 国际志愿人员日",
-"1220 澳门回归纪念",
-"1225 Christmas Day",
-"1226 毛泽东诞辰纪念")
+"1009 邮政日",
+"1014 标准日",
+"1016 粮食日",
+"1024 ",
+"1120 ",
+"1121 ",
+"1122 ",
+"1112 ",
+"1205 ",
+"1220 ",
+"1225 圣诞节",
+"1226 ")
 
 //农历节日 *表示放假日
 var lFtv = new Array(
 "0101*春节",
-"0102*春节",
-"0103*春节",
-"0115 元宵节",
-"0505 端午节",
-"0624*火把节",
-"0625*火把节",
-"0626*火把节",
-"0707 七夕情人节",
-"0715 中元节",
-"0815 中秋节",
-"0909 重阳节",
-"1208 腊八节",
+"0102 ",
+"0103 ",
+"0115 元宵",
+"0505 端午",
+"0624 ",
+"0625 ",
+"0626 ",
+"0707 七夕",
+"0715 中元",
+"0815 中秋",
+"0909 重阳",
+"1208 腊八",
 "1224 小年",
 "0100 除夕")
 
@@ -119,8 +119,8 @@ var lFtv = new Array(
 var wFtv = new Array(
 "0520 母亲节",
 "0630 父亲节",
-"0730 被奴役国家周",
-"1144 Thanksgiving感恩节")
+"0730 ",
+"1144 感恩节")
 
 
 /*****************************************************************************
@@ -366,14 +366,12 @@ function drawCld(SY,SM) {
    var i,sD,s,size;
    cld = new calendar(SY,SM);
 
-	
    if(SY>1874 && SY<1909) yDisplay = '光绪' + (((SY-1874)==1)?'元':SY-1874)
    if(SY>1908 && SY<1912) yDisplay = '宣统' + (((SY-1908)==1)?'元':SY-1908)
    if(SY>1911 && SY<1950) yDisplay = '民国' + (((SY-1911)==1)?'元':SY-1911)
    if(SY>1949) yDisplay = '共和国' + (((SY-1949)==1)?'元':SY-1949)
-   
 
-  // GZ.innerHTML = '◆ '+yDisplay +'年 ◆农历 ' + cyclical(SY-1900+36) + '年 &nbsp;【'+Animals[(SY-4)%12]+'】';
+   //GZ.innerHTML = '◆ '+yDisplay +'年 ◆农历 ' + cyclical(SY-1900+36) + '年 &nbsp;【'+Animals[(SY-4)%12]+'】';
 
    YMBG.innerHTML = "&nbsp;" + SY + "<BR>&nbsp;" + monthName[SM];
 
@@ -401,14 +399,14 @@ function drawCld(SY,SM) {
 
          s=cld[sD].lunarFestival;
          if(s.length>0) { //农历节日
-            if(s.length>2) s = s.substr(0, 2)+'…';
+            if(s.length>6) s = s.substr(0, 4)+'…';
             s = s.fontcolor('red');
          }
          else { //国历节日
             s=cld[sD].solarFestival;
             if(s.length>0) {
                size = (s.charCodeAt(0)>0 && s.charCodeAt(0)<128)?8:4;
-               if(s.length>2) s = s.substr(0, 2)+'…';
+               if(s.length>size+2) s = s.substr(0, size)+'…';
                s = s.fontcolor('blue');
             }
             else { //廿四节气
@@ -424,8 +422,6 @@ function drawCld(SY,SM) {
          lObj.innerHTML = '';
       }
    }
-
-
 }
 
 
@@ -433,7 +429,6 @@ function changeCld() {
    var y,m;
    y=CLD.SY.selectedIndex+1900;
    m=CLD.SM.selectedIndex;
-
    drawCld(y,m);
 }
 
@@ -513,15 +508,17 @@ function mOvr(v) {
       s= '<TABLE WIDTH="130" BORDER=0 CELLPADDING="2" CELLSPACING=0 BGCOLOR="#000066"><TR><TD>' +
          '<TABLE WIDTH=100% BORDER=0 CELLPADDING=0 CELLSPACING=0><TR><TD ALIGN="right"><FONT COLOR="#ffffff" STYLE="font-size:9pt;">'+
          cld[d].sYear+' 年 '+cld[d].sMonth+' 月 '+cld[d].sDay+' 日<br>星期'+cld[d].week+'<br>'+
-         '<font color="violet">农历'+(cld[d].isLeap?'闰 ':' ')+cld[d].lMonth+' 月 '+cld[d].lDay+' 日</font><br>'+
-         '<font color="yellow">'+cld[d].cYear+'年 '+cld[d].cMonth+'月 '+cld[d].cDay + '日</font>'+
+         '<font color="yellow">农历'+(cld[d].isLeap?'闰 ':' ')+cld[d].lMonth+' 月 '+cld[d].lDay+' 日</font><br>'+
+         '<font color="violet">'+cld[d].cYear+'年 '+cld[d].cMonth+'月 '+cld[d].cDay + '日</font>'+
          '</FONT></TD></TR></TABLE>'+ festival +'</TD></TR></TABLE>';
 
 
       document.all["detail"].innerHTML = s;
 
     if (snow == 0) {
-         dStyle.left = x+offsetx-(width/2);
+         //dStyle.left = x+offsetx-(width/2);
+          var dx = x+offsetx-20;    	   
+    	   dStyle.left = dx;
          dStyle.top = y+offsety;
      dStyle.visibility = "visible";
      snow = 1;
@@ -543,7 +540,10 @@ function mEvn() {
  if (document.body.scrollLeft)
     {x=event.x+document.body.scrollLeft; y=event.y+document.body.scrollTop;}
  if (snow){
-      dStyle.left = x+offsetx-(width/2)
+      //dStyle.left = x+offsetx-(width/2)
+      //原本为 dStyle.left = x+offsetx-(width/2)
+ 			var beingx = x+offsetx-20; 		
+      dStyle.left = beginx;
       dStyle.top = y+offsety
  }
 }
@@ -551,17 +551,17 @@ function mEvn() {
 ///////////////////////////////////////////////////////////////////////////
 
 function changeTZ() {
-   //CITY.innerHTML = CLD.TZ.value.substr(6)
-   //setCookie("TZ",CLD.TZ.selectedIndex)
+   CITY.innerHTML = CLD.TZ.value.substr(6)
+   setCookie("TZ",CLD.TZ.selectedIndex)
 }
 
 
 function tick() {
    var today
    today = new Date()
-   //Clock.innerHTML = today.toLocaleString()
-   //Clock2.innerHTML = TimeAdd(today.toGMTString(), CLD.TZ.value)
-  // window.setTimeout("tick()", 1000);
+   Clock.innerHTML = today.toLocaleString()
+   Clock2.innerHTML = TimeAdd(today.toGMTString(), CLD.TZ.value)
+   window.setTimeout("tick()", 1000);
 }
 
 function setCookie(name, value) {
@@ -588,19 +588,21 @@ function getCookie(Name) {
 /////////////////////////////////////////////////////////
 
 function initial() {
-   //resizeTo(780,540) 
+  //resizeTo(780,540) 
    dStyle = detail.style;
    CLD.SY.selectedIndex=tY-1900;
-   CLD.SM.selectedIndex=tM;
-
-	
+   CLD.SM.selectedIndex=tM;   
+ 
    drawCld(tY,tM);
-   //pushBtm('');
-   //CLD.TZ.selectedIndex=getCookie("TZ");
-   //changeTZ();
-   //tick();
-
+   
+   //测试
+   //window.demo.clickOnAndroid();
+   
+  // CLD.TZ.selectedIndex=getCookie("TZ");
+  // changeTZ();
+  // tick();
 }
+
 //-->
 </SCRIPT>
 
@@ -632,62 +634,68 @@ End Function
 <META content="MSHTML 6.00.2800.1476" name=GENERATOR></HEAD>
 <BODY leftMargin=0 topMargin=0 onload=initial()>
 
+<SCRIPT language=JavaScript>
 
-
+lck=0;
+function r(hval)
+{
+if ( lck == 0 )
+{
+document.bgColor=hval;
+}
+}
+</SCRIPT>
 
 <DIV id=detail style="POSITION: absolute"></DIV>
-<CENTER>
+
 <FORM name=CLD>
 <TABLE>
   <TBODY>
-  <TR>   
+  <TR>    
     <TD align=middle>
       <DIV style="Z-INDEX: -1; POSITION: absolute; TOP: 30px"><FONT id=YMBG 
-      style="FONT-SIZE: 80pt; COLOR: #f0f0f0; FONT-FAMILY: 'Arial Black'">&nbsp;0000<BR>&nbsp;JUN</FONT> 
+      style="FONT-SIZE: 90pt; COLOR: #f0f0f0; FONT-FAMILY: 'Arial Black'">&nbsp;0000<BR>&nbsp;JUN</FONT> 
       </DIV>
       <TABLE border=0>
         <TBODY>
-         <TR>
-          <TD bgColor=#000080 colSpan=7>
-			  <FONT style="FONT-SIZE: 10pt" 
-				color=#ffffff size=2>公历<SELECT style="FONT-SIZE: 9pt" 
-				onchange=changeCld() name=SY> 
-				  <SCRIPT language=JavaScript><!--
-				for(i=1900;i<2050;i++) document.write('<option>'+i)
-				//--></SCRIPT>
-				</SELECT>年<SELECT style="FONT-SIZE: 10pt" onchange=changeCld() 
-				name=SM> 
-				  <SCRIPT language=JavaScript><!--
-				for(i=1;i<13;i++) document.write('<option>'+i)
-				//--></SCRIPT>
-				</SELECT>月 </FONT>
-				<FONT id=GZ face=标楷体 color=yellow size=3></FONT><BR>
-			</TD>
-		</TR>
-		<TR>
-			<TD bgColor=#000080 style="FONT-SIZE:11pt; color:yellow" vAlign=middle align=left colSpan=7>
-			  <label onclick="pushBtm('YU')"><u>上年↑</u></label>&nbsp;
-			  <label onclick="pushBtm('YD')"><u>下年↓</u></label>&nbsp;
-			  <label onclick="pushBtm('MU')"><u>上月↑</u></label>&nbsp;	
-			  <label onclick="pushBtm('MD')"><u>下月↓</u></label>&nbsp;
-			  <label onclick="pushBtm('')"><u>返回今天</u></label>	
-			</TD>	
-		</TR>
+        <TR>
+          <TD bgColor=#000080 colSpan=7><FONT style="FONT-SIZE: 12pt" 
+            color=#ffffff size=2>公历<SELECT style="FONT-SIZE: 12pt" 
+            onchange=changeCld() name=SY> 
+              <SCRIPT language=JavaScript><!--
+            for(i=1900;i<2050;i++) document.write('<option>'+i)
+            //--></SCRIPT>
+            </SELECT>年<SELECT style="FONT-SIZE: 12pt" onchange=changeCld() 
+            name=SM> 
+              <SCRIPT language=JavaScript><!--
+            for(i=1;i<13;i++) document.write('<option>'+i)
+            //--></SCRIPT>
+            </SELECT>月 </FONT><FONT id=GZ face=标楷体 color=white 
+            size=3></FONT><BR></TD></TR>
+        <TR>
+					<TD bgColor=#000080 style="FONT-SIZE:13pt; color:yellow;padding-top:6px;padding-bottom:5px;" vAlign=middle align=left colSpan=7>
+					  <label onclick="pushBtm('YU')"><u>上年↑</u></label>&nbsp;
+					  <label onclick="pushBtm('YD')"><u>下年↓</u></label>&nbsp;
+					  <label onclick="pushBtm('MU')"><u>上月↑</u></label>&nbsp;
+					  <label onclick="pushBtm('MD')"><u>下月↓</u></label>&nbsp;
+					  <label onclick="pushBtm('')"><u>返回今天</u></label>	
+					</TD>	
+				</TR>
         <TR align=middle bgColor=#e0e0e0>
-          <TD width=45><FONT color=red>日</FONT></TD>
-          <TD width=45>一</TD>
-          <TD width=45>二</TD>
-          <TD width=45>三</TD>
-          <TD width=45>四</TD>
-          <TD width=45>五</TD>
-          <TD width=46><FONT color=green>六</FONT></TD></TR>
+          <TD width=54><FONT color=red>日</FONT></TD>
+          <TD width=54>一</TD>
+          <TD width=54>二</TD>
+          <TD width=54>三</TD>
+          <TD width=54>四</TD>
+          <TD width=54>五</TD>
+          <TD width=54><FONT color=green>六</FONT></TD></TR>
         <SCRIPT language=JavaScript><!--
             var gNum
             for(i=0;i<6;i++) {
                document.write('<tr align=center>')
                for(j=0;j<7;j++) {
                   gNum = i*7+j
-                  document.write('<td id="GD' + gNum +'" onMouseOver="mOvr(' + gNum +')" onMouseOut="mOut()"><font id="SD' + gNum +'" size=5 face="Arial Black"')
+                  document.write('<td id="GD' + gNum +'" onclick="mOvr(' + gNum +')" onMouseOut="mOut()"><font id="SD' + gNum +'" size=5 face="Arial Black"')
                   if(j == 0) document.write(' color=red')
                   if(j == 6)
                      if(i%2==1) document.write(' color=red')
@@ -697,6 +705,9 @@ End Function
                document.write('</tr>')
             }
             //--></SCRIPT>
-
-        </TBODY></TABLE></TD></TR></TBODY></TABLE></FORM>
-</BODY></HTML>
+        </TBODY></TABLE></TD>
+    </TR></TBODY>
+</TABLE>
+</FORM>
+</BODY>
+</HTML>
