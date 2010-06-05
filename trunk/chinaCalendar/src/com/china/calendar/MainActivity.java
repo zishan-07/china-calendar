@@ -13,10 +13,6 @@ public class MainActivity extends Activity {
 	private String contentUri = "file:///android_asset/calendar.html";
 	
 	private Handler mHandler = new Handler();  
-	
-	private double year = -1;
-	
-	private double month = -1;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,7 +37,30 @@ public class MainActivity extends Activity {
 //             }
 //            }, "demo");
         
+                        
+//        webView.addJavascriptInterface(new Object() {  
+//            public void clickOnAndroid() {  
+//                mHandler.post(new Runnable() {  
+//                	public void run() {  
+//                    	webView.loadUrl("javascript:pushBtm('MU')");  
+//                    	webView.loadUrl("javascript:pushBtm('MD')"); 
+//                    }
+//                });  
+//            }  
+//        }, "demo");  
+        
+        
         webView.loadUrl(contentUri);
+        try {
+			Thread.sleep(1500);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
+        
+        webView.loadUrl("javascript:pushBtm('MU')");  
+    	webView.loadUrl("javascript:pushBtm('MD')"); 
         
     }
+    
 }
