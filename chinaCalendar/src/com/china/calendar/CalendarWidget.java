@@ -8,16 +8,19 @@ import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
 import android.content.Context;
 import android.content.Intent;
+import android.text.Html;
 import android.util.Log;
 import android.widget.RemoteViews;
 
 public class CalendarWidget extends AppWidgetProvider {
 	
-	private int lastDay;
+	private static int lastDay;
 	
-	private int lastHour;
+	private static int lastHour;
 	
 	private static RemoteViews views;
+	
+	private static String[] weekArray ={"日","一","二","三","四","五","六"}; 
 	
 
 	@Override
@@ -42,17 +45,26 @@ public class CalendarWidget extends AppWidgetProvider {
 			Intent intent = new Intent(context, MainActivity.class);
 			PendingIntent pendingIntent =PendingIntent.getActivity(context, 0, intent, 0);
 			views.setOnClickPendingIntent(R.id.my_widget, pendingIntent);
-			
-			appWidgetManager.updateAppWidget(appWidgetId, views);
 		}
 		  
 		Calendar calendar = Calendar.getInstance();
-		calendar.getTime();
+		int curHour = calendar.get(Calendar.HOUR_OF_DAY);
+		if(lastDay ==0 || (curHour==0 && lastHour!=0)){
+			
+			int month = calendar.get(Calendar.MONTH)+1;
+			int day = calendar.get(Calendar.DAY_OF_MONTH);
+			int week = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH)-1;			
+			Lunar lunar = new Lunar(calendar);  
+			
+			String month_week = month+"月"+"          周"+weekArray[week];			
+			views.setTextViewText(R.id.month_week,month_week);
+			views.setTextViewText(R.id.nongli,lunar.toString());
+			views.setTextViewText(R.id.day,Html.fromHtml("<B>"+String.valueOf(day)+"</B>"));
+			
+		}
 		
-			views.setTextViewText(R.id.top1, "2010-6-6 周日");
-			views.setTextViewText(R.id.top2,"农历：2010/5/12");
 		
-		
+		appWidgetManager.updateAppWidget(appWidgetId, views);
 		
 	}
 	
