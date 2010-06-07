@@ -21,6 +21,13 @@
 			<meta-data android:name="android.appwidget.provider" 
 			android:resource="@xml/appwidget_info" />
 		</receiver>
+		
+		<receiver android:name="MyTimeSetReceiver">        
+            <intent-filter>
+                 <action android:name="android.intent.action.TIME_SET"/>
+                 <category android:name="android.intent.category.HOME" /> 
+            </intent-filter>       
+        </receiver>
 
     </application>
     <uses-sdk android:minSdkVersion="3" />
