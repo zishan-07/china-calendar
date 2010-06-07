@@ -1,10 +1,16 @@
 package com.china.calendar;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.webkit.WebView;
+import android.widget.Toast;
+
+import com.china.calendar.util.ConfigCenter;
+import com.china.calendar.util.Constant;
 
 public class MainActivity extends Activity {
 	
@@ -13,6 +19,8 @@ public class MainActivity extends Activity {
 	private String contentUri = "file:///android_asset/calendar.html";
 	
 	private Handler mHandler = new Handler();  
+	
+	private Timer timer = new Timer();
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -50,6 +58,7 @@ public class MainActivity extends Activity {
 //        }, "demo");  
         
         
+        
         webView.loadUrl(contentUri);
         try {
 			Thread.sleep(1500);
@@ -60,6 +69,12 @@ public class MainActivity extends Activity {
         
         webView.loadUrl("javascript:pushBtm('MU')");  
     	webView.loadUrl("javascript:pushBtm('MD')"); 
+    	
+
+    	if(!ConfigCenter.getValue(this, Constant.KEY_WIDGET_ADDED, false)){ 
+    		Toast.makeText(MainActivity.this, "温馨提示：您还可以添加桌面小部件显示漂亮的日历！", Toast.LENGTH_LONG).show();
+    	}
+    	
         
     }
     
