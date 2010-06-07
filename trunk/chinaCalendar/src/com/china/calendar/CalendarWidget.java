@@ -12,6 +12,9 @@ import android.text.Html;
 import android.util.Log;
 import android.widget.RemoteViews;
 
+import com.china.calendar.util.ConfigCenter;
+import com.china.calendar.util.Constant;
+
 public class CalendarWidget extends AppWidgetProvider {
 	
 	private static int lastDay;
@@ -77,11 +80,13 @@ public class CalendarWidget extends AppWidgetProvider {
 	
 	@Override
 	public void onEnabled(Context context) {
+		ConfigCenter.setValue(context, Constant.KEY_WIDGET_ADDED, true);
 		super.onEnabled(context);
 	}
 	
 	@Override
 	public void onDisabled(Context context) {
+		ConfigCenter.setValue(context, Constant.KEY_WIDGET_ADDED, false);
 		super.onDisabled(context);
 	}
 
