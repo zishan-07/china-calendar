@@ -37,6 +37,8 @@ public class CalendarWidget extends AppWidgetProvider {
 
 	public static void updateAppWidget(Context context,
 			AppWidgetManager appWidgetManager,int appWidgetId) {
+		
+		Log.d("TimeSetReceiver", "timer run");
 		 
 		if(views == null){
 			views = new RemoteViews(context.getPackageName(),R.layout.my_widget);
@@ -49,11 +51,15 @@ public class CalendarWidget extends AppWidgetProvider {
 		  
 		Calendar calendar = Calendar.getInstance();
 		int curHour = calendar.get(Calendar.HOUR_OF_DAY);
-		if(lastDay ==0 || (curHour==0 && lastHour!=0)){
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		
+		Log.d("TimeSetReceiver", "timer run:"+day+","+curHour);
+		
+		if(lastDay ==0 || (lastDay!=day)|| (curHour==0 && lastHour!=0)){
 			
 			int month = calendar.get(Calendar.MONTH)+1;
-			int day = calendar.get(Calendar.DAY_OF_MONTH);
-			int week = calendar.get(Calendar.DAY_OF_WEEK_IN_MONTH)-1;			
+			
+			int week = calendar.get(Calendar.DAY_OF_WEEK)-1;			
 			Lunar lunar = new Lunar(calendar);  
 			
 			String month_week = month+"月"+"          周"+weekArray[week];			
@@ -62,7 +68,8 @@ public class CalendarWidget extends AppWidgetProvider {
 			views.setTextViewText(R.id.day,Html.fromHtml("<B>"+String.valueOf(day)+"</B>"));
 			
 		}
-		
+		lastDay = day;
+		lastHour = curHour;
 		
 		appWidgetManager.updateAppWidget(appWidgetId, views);
 		
