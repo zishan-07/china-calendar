@@ -106,10 +106,11 @@ public class MainActivity extends Activity implements OnTouchListener,OnGestureL
 		 
 	       if(e1.getX() > e2.getX()) {
 	    	   //move to left   	    	   
-	    	   webView.loadUrl("javascript:pushBtm('MU')");  
+	    	   webView.loadUrl("javascript:pushBtm('MD')"); 
 	    	   
 	       }else if(e1.getX() < e2.getX()) { 
-	    	   webView.loadUrl("javascript:pushBtm('MD')"); 
+	    	   
+	    	   webView.loadUrl("javascript:pushBtm('MU')");  
 	       }else {   
 	    	   
 	           return false;   
