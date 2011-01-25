@@ -5,8 +5,10 @@ import java.util.Timer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.GestureDetector;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 
 import com.china.calendar.util.ConfigCenter;
 import com.china.calendar.util.Constant;
+import com.mobclick.android.MobclickAgent;
 
 public class MainActivity extends Activity implements OnTouchListener,OnGestureListener {
 	
@@ -87,6 +90,28 @@ public class MainActivity extends Activity implements OnTouchListener,OnGestureL
     	
         
     }
+    
+    @Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+    	MenuInflater inflater = getMenuInflater();
+    	inflater.inflate(R.menu.menu_feedback, menu);
+    	return true;
+	}
+    
+    @Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+    	
+    	switch (item.getItemId()) {
+		
+		case R.id.menu_feedback:
+			MobclickAgent.openFeedbackActivity(MainActivity.this);
+			break;
+		
+		default:
+			throw new IllegalArgumentException("Unknown Operator");
+		}
+    	return true;
+    }
 
 	@Override
 	public boolean onTouch(View v, MotionEvent event) {
@@ -137,6 +162,17 @@ public class MainActivity extends Activity implements OnTouchListener,OnGestureL
 	@Override
 	public boolean onSingleTapUp(MotionEvent e) {
 		return false;
+	}
+	
+	 public void onResume() {
+		  super.onResume();		  
+		  MobclickAgent.onResume(this);
+	}
+	
+	public void onPause(){		
+		super.onPause();
+		MobclickAgent.onPause(this);
+		
 	}
     
 }
