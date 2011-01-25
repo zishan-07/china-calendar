@@ -23,6 +23,7 @@
                         android:layout_height="wrap_content"
                         umadsdk:refreshInterval="30"
                         umadsdk:changeAdAnimation="true"    
+                        umadsdk:testing="true"    
                         android:layout_alignParentBottom="true"                    
     />		
 
