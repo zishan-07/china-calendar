@@ -9,22 +9,12 @@
     
     <WebView android:id="@+id/wv" android:layout_height="wrap_content"
 			android:layout_width="fill_parent" />
-	<!-- 		
-	<com.wooboo.adlib_android.WoobooAdView
-			android:layout_width="fill_parent" android:layout_height="48px"
-			android:layout_alignParentBottom="true"
-			adsdk:testing="false"
-			adsdk:backgroundColor="#00000000" adsdk:textColor="#FFFFFFFF"
-			adsdk:refreshInterval="30" />	
-	-->
-	<net.youmi.android.AdView  
-                        android:id="@+id/ad" 
-                        android:layout_width="fill_parent" 
-                        android:layout_height="wrap_content"
-                        umadsdk:refreshInterval="30"
-                        umadsdk:changeAdAnimation="true"    
-                        umadsdk:testing="false"    
-                        android:layout_alignParentBottom="true"                    
-    />		
-
+	
+	<net.youmi.android.AdView
+	   android:layout_width="fill_parent"  
+	   android:layout_height="wrap_content"
+	   umadsdk:textColor="#ffffff" 
+	   umadsdk:backgroundColor="#808080" 
+	   android:layout_alignParentBottom="true"  
+   	/> 
 </RelativeLayout>
