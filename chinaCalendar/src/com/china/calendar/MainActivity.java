@@ -2,6 +2,8 @@ package com.china.calendar;
 
 import java.util.Timer;
 
+import net.youmi.android.AdManager;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +23,10 @@ import com.china.calendar.util.Constant;
 import com.mobclick.android.MobclickAgent;
 
 public class MainActivity extends Activity implements OnTouchListener,OnGestureListener {
+	
+	static{   	  
+    	AdManager.init("adf10b97d4cd7fff", "f0d9217f27481078", 30, false,"1.6");  	    	
+	}
 	
 	private GestureDetector mGestureDetector;
 	
